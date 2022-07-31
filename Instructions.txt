@@ -1,0 +1,16 @@
+1) Created the server with yarn create vite mangascans-server-vite --template react-ts, ran yarn. 
+    //After installing dependencies to run the server just run yarn dev
+2) Installed all the dependencies:
+    //yarn add typescript @types/node @types/react @types/react-dom @types/jest
+    //yarn add styled-components
+    //yarn add @types/styled-components
+    //yarn add react-router-dom
+    //yarn add @tanstack/react-query
+    //yarn add luxon
+    //yarn add -D @types/luxon
+
+3) In the tsconfig.json add the following line so every import takes the src as the initial folder. Add the line as the first item of compilerOptions.
+    // "baseUrl": "./src",
+4) Create the router.tsx in the src folder to serve as the routes file
+
+5) Small reminder, the tags in the style is the same as the html tag, using them is the same as using the html tag in the index and the giving it style.
