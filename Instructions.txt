@@ -1,5 +1,6 @@
 1) Created the server with yarn create vite mangascans-server-vite --template react-ts, ran yarn. 
     //After installing dependencies to run the server just run yarn dev
+    
 2) Installed all the dependencies:
     //yarn add typescript @types/node @types/react @types/react-dom @types/jest
     //yarn add styled-components
@@ -8,9 +9,128 @@
     //yarn add @tanstack/react-query
     //yarn add luxon
     //yarn add -D @types/luxon
+    //yarn add react-hot-toast
+    //yarn add react icons
 
 3) In the tsconfig.json add the following line so every import takes the src as the initial folder. Add the line as the first item of compilerOptions.
     // "baseUrl": "./src",
-4) Create the router.tsx in the src folder to serve as the routes file
 
-5) Small reminder, the tags in the style is the same as the html tag, using them is the same as using the html tag in the index and the giving it style.
+4) In the tsconfig.json add the following line so every import takes the src as the initial folder. Add the line as the first item of compilerOptions.
+    // "baseUrl": "./src",
+
+5) Create the assets folder and begin including the imgs, and styles folders
+    // In the imgs create the folders that will contain the images to be used
+    // in the styles folder, create the colors.ts, constants.ts, mixins.ts and theme.ts
+        // colors.ts -> defines the basic colors definitions for the project
+        // constants.ts -> defines the basic font sizes and types for the project
+        // mixins.ts -> imports colors.ts and constants.ts and defines an array of facilitating items / objects formats (example: buttons, logo, heading, selects)
+        // theme.ts -> imports all the others and defines the theme object with them, them export them.
+
+6) Create the folder types in the src folder
+    // Create the styled-components.d.ts in the folder
+        // import the theme from the theme.ts, create the type Theme with the typeof theme and then declare the module styled-components extending and exporting it like so:
+            import theme from "assets/styles/theme";
+
+            type Theme = typeof theme;
+
+            declare module "styled-components" {
+            export interface DefaultTheme extends Theme {}
+            }
+
+7) Create the routes.ts in the types folder to serve as the routes file predefinitions. Example:
+        export enum RoutePath {
+        HOME = '/',
+        LOGIN = '/login',
+        SETTINGS = '/settings',
+        MANGAS = '/mangas',
+        FAVORITES = '/favorites',
+        USERS = '/users',
+    }
+
+8) Create the router.tsx in the src folder to serve as the routes file. You will fill the routes as you finish creating the pages like so:
+    import { Routes, Route } from "react-router-dom";
+    import Home from "pages/home/index";
+
+    const Router = () => {
+    return (
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={} />
+        <Route path="/settings" element={} />
+        <Route path="/mangas" element={} />
+        <Route path="/favorites" element={} />
+        <Route path="/users" element={} />
+        </Routes>
+    );
+    };
+
+    export default Router;
+
+9) In the App.tsx import the missing methods from the react-query, styled-components, themm, react-router-dom and router. After this define the queryClient
+and the return in the function the ThemeProvider with the theme={theme} as a prop and BrowserRouter to have the routes and the QueryClientProvider with client{queryClient} as prop,
+now within you can start calling the router to start the project.
+    import React from "react";
+    import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+    import { ThemeProvider } from "styled-components";
+    import theme from "assets/styles/theme";
+    import "./App.css";
+    import { BrowserRouter } from "react-router-dom";
+    import Router from "./router";
+
+    const queryClient = new QueryClient();
+
+    function App() {
+    return (
+        <ThemeProvider theme={theme}>
+        <BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+            <Router />
+            </QueryClientProvider>
+        </BrowserRouter>
+        </ThemeProvider>
+    );
+    }
+
+    export default App;
+
+10) Create the following folders in the src folder:
+    components: responsável por guardar todos os componentes da aplicação
+    mocks: responsável por guardar os dados em memória enquanto não consumimos a API
+        //Create the mocks for practice, for proper practice separate in diferent files and use the same interface as the api, to do this:
+            Create the interface.ts file in the types folder and export it into the mocked files to compare.
+    pages: responsável por guardar as páginas principais da aplicação
+    services: será responsável por guardar o arquivo de comunicação com a API
+    data: responsável por guardar alguns dados importantes da aplicação
+    helpers: responsável por guardar algumas classes auxiliares necessárias para a nossa aplicação
+
+11) With the mocked files ready create the home folder inside the pages folder.
+    Start creating the home page by creating the index.tsx and style.ts file in the home folder, imagine how it should look.
+
+12) In the style.ts file in the home, you must now define the css config with the const values being defined and exported into the index.jsx file
+    notice that each const counts as a substitute for it's name, for example:
+        export const home = styled.section`
+        ${({ theme }) => css`
+            background-color: ${theme.colors.primaryColor};
+            min-width: 100vw;
+            min-height: 100vh;
+            color: ${theme.colors.textColor};
+            display: flex;
+            justify-content: space-between;
+        `}
+        `;
+    You can use this home const as a section tag now.
+        <S.home>
+        <div>
+            <h1>Home</h1>
+        </div>
+        </S.home>
+    This is the same as below but with the css formating:
+        <section>
+        <div>
+            <h1>Home</h1>
+        </div>
+        </section>
+
+* to import the webp image in react.typescript use:
+    import img from "./images/image.webp";
+    <img src={img} />
