@@ -1,70 +1,88 @@
 import styled, { css } from "styled-components"; // importing to enable the use of css in this .ts file (must install first)
+import theme from "../../assets/styles/theme";
 
-interface HeaderItemProps {
-  logout?: boolean;
-  active?: boolean;
-}
-
-interface HeaderItemButtonProps {
-  active?: boolean;
-}
-
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.header`
+  width: 100%;
   height: 3.8rem;
-  background-color: #0b0a0d;
   display: flex;
+  background-color: ${theme.colors.primaryColor};
+  justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   img {
     width: 3.125rem;
-    margin-left: 15vw;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-right: 42rem;
-  }
-  nav {
-    width: 100%;
+    margin-left: 14vw;
   }
 `;
 
-export const SearchDiv = styled.div`
-  float: right;
-  width: 23rem;
-  /* margin: 1rem; */
-  position: relative;
-`;
+// primaryColor: "#0B0BA0D", // black
+// secondaryColor: "#B8B8B8", //gray
+// terciaryColor: "#913fe2" //purple
 
-export const formu = styled.form`
+export const TitleContainer = styled.div`
+  height: 3.8rem;
+  width: 50%;
   display: flex;
-  /* margin-top: 0em; */
-  align-content: center;
+  background-color: ${theme.colors.primaryColor};
+  /* justify-content: space-between; */
   align-items: center;
-  /* button {
-    height: 100%;
-    width: 1.3rem;
-    color: #17151b;
-  }
+  box-sizing: border-box;
   img {
-    height: 100%;
-    width: 100%;
-    margin-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-right: 0;
-  } */
+    width: 3.125rem;
+    margin-left: 14vw;
+  }
+  h1 {
+    font-family: "Big Shoulders Inline Display", cursive;
+    text-transform: uppercase;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  p {
+    text-transform: capitalize;
+    font-size: 20px;
+  }
 `;
-export const Searchbox = styled.input`
-  font-weight: 300;
-  background: #17151b;
-  box-shadow: none;
-  display: block;
-  width: 80%;
-  height: 1.3rem;
-  padding: 0.375rem 0.7rem;
-  font-family: inherit;
-  line-height: 1.42857143;
-  color: #fff;
-  border: 1px solid #23202a;
+
+export const SearchContainer = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SearchInputContainer = styled.div`
+  width: 21.875rem;
+  height: 2.125rem;
+  background-color: #16151b;
+  border: 1px solid #393c49;
   border-radius: 3px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  /* padding-left: 15rem; */
+  gap: 10px;
+
+  input {
+    background-color: #16151b;
+    width: 21.875rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 0.375rem 0.75rem;
+    padding-top: 0.375rem;
+    padding-right: 1.875rem;
+    padding-bottom: 0.375rem;
+    padding-left: 0.75rem;
+    :focus {
+      outline: none;
+    }
+  }
+  button {
+    background-color: #16151b;
+    width: 3.125rem;
+    height: 2.125rem;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const HeaderNav = styled.div`
@@ -77,18 +95,34 @@ export const HeaderNav = styled.div`
   }
 `;
 
-export const Menu = styled.ul`
+export const Menu = styled.div`
   margin-left: 13vw;
-  line-height: 1.5;
+  line-height: 2.5;
   position: relative;
   float: left;
   display: flex;
 `;
 
-export const Link = styled.a`
-  display: block;
+export const Box = styled.a`
+  display: flex;
+  height: 2.6rem;
   text-align: center;
   padding: 0 1rem;
+  justify-content: space-between;
+  color: #fff;
+  border-left: 0;
+  position: relative;
+  font-family: fira sans, sans-serif;
+  font-size: 0.9rem;
+  text-decoration: none;
+  :hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+  }
+`;
+
+export const Link = styled.span`
+  display: block;
+  text-align: center;
   color: #fff;
   border-left: 0;
   transition: color 0.5s;
@@ -96,7 +130,4 @@ export const Link = styled.a`
   font-family: fira sans, sans-serif;
   font-size: 0.9rem;
   text-decoration: none;
-  :hover {
-    background-color: rgb(151, 120, 209);
-  }
 `;
