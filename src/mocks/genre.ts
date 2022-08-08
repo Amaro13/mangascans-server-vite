@@ -1,6 +1,6 @@
 import * as T from "../types/interfaces";
 
-export const mockedCategories: T.Genre[] = [
+export const mockedGenres: T.Genre[] = [
   {
     id: "b7df5bb8-d5dc-4174-8a30-1df4549a04fe",
     name: "Fantasy",
