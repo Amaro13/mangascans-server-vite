@@ -7,7 +7,7 @@ interface GenresNavigationButtonProps {
 
 export const home = styled.section`
   ${({ theme }) => css`
-    background-color: ${theme.colors.primaryColor};
+    background-color: ${theme.colors.background};
     min-width: 100vw;
     min-height: 100vh;
     color: ${theme.colors.textColor};
