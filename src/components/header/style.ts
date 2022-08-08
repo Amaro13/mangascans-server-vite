@@ -111,33 +111,29 @@ export const Pages = styled.div`
   display: flex;
 `;
 
-export const Box = styled.a`
+export const Box = styled.div`
   display: flex;
   height: 2.6rem;
   text-align: center;
   padding: 0 1rem;
-  justify-content: space-between;
   color: #fff;
   border-left: 0;
   position: relative;
-  font-family: fira sans, sans-serif;
-  font-size: 0.9rem;
-  text-decoration: none;
-  :hover {
-    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
-  }
 `;
 
-export const Link = styled.span`
+export const Link = styled.button`
   display: block;
   text-align: center;
   color: #fff;
-  border-left: 0;
+  background-color: #913fe2;
   transition: color 0.5s;
   position: relative;
   font-family: fira sans, sans-serif;
   font-size: 0.9rem;
-  text-decoration: none;
+  cursor: pointer;
+  :hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+  }
 `;
 
 export const Logout = styled.div<LogoutProps>`
@@ -170,7 +166,7 @@ export const LogoutButton = styled.button<LogoutButtonProps>`
   justify-content: center;
   margin-right: 12px;
   background-color: #913fe2;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   color: #6cea69;
   cursor: pointer;
 

@@ -22,6 +22,14 @@ const Header = ({ path, setLogged }: HeaderProps) => {
     navigate("/login");
   };
 
+  const handlehome = () => {
+    navigate("/");
+  };
+
+  const handlesettings = () => {
+    navigate("/Settings");
+  };
+
   return (
     <header>
       <S.HeaderContainer>
@@ -41,17 +49,17 @@ const Header = ({ path, setLogged }: HeaderProps) => {
       </S.HeaderContainer>
       <S.HeaderNav>
         <S.Pages>
-          <S.Box href="/">
-            <S.Link>Home</S.Link>
+          <S.Box>
+            <S.Link onClick={handlehome}>Home</S.Link>
           </S.Box>
-          <S.Box href="/favorites">
+          <S.Box>
             <S.Link>Favorites</S.Link>
           </S.Box>
-          <S.Box href="/mangas">
+          <S.Box>
             <S.Link>New Manga</S.Link>
           </S.Box>
-          <S.Box href="/settings">
-            <S.Link>Settings</S.Link>
+          <S.Box>
+            <S.Link onClick={handlesettings}>Settings</S.Link>
           </S.Box>
         </S.Pages>
         <S.Logout logout>
