@@ -1,4 +1,9 @@
 import styled, { css } from "styled-components"; // importing to enable the use of css in this .ts file (must install first)
+import theme from "../../assets/styles/theme";
+
+interface GenresNavigationButtonProps {
+  active?: boolean;
+}
 
 export const home = styled.section`
   ${({ theme }) => css`
@@ -21,77 +26,42 @@ export const HomeContent = styled.main`
   `}
 `;
 
-export const HomeHeaderDetails = styled.div`
-  ${() => css`
-    display: flex;
-    justify-content: space-between;
-  `}
+export const GenresNavigationBar = styled.div`
+  width: 80%;
+  margin-left: 13vw;
+  margin-top: 2vh;
+  height: 3vh;
+  border-bottom: 1px solid #393c49;
+  display: flex;
 `;
 
-export const HomeHeaderDetailsLogo = styled.h1`
-  ${({ theme }) => css`
-    ${theme.mixins.logoStyle};
-    text-transform: uppercase;
-    margin: 0;
-  `}
+export const GenresNavigationButton = styled.button<GenresNavigationButtonProps>`
+  color: #393c49;
+  border: 0;
+  cursor: pointer;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin-right: 0.4rem;
+  background-color: ${theme.colors.primaryColor};
+
+  :hover {
+    color: #ffffff;
+  }
+
+  ${({ active }) =>
+    active &&
+    css`
+      color: #6cea69;
+      border-bottom: 2px solid #6cea69;
+    `}
 `;
 
-export const HomeHeaderDetailsDate = styled.p`
-  ${() => css`
-    text-transform: capitalize;
-  `}
-`;
-
-export const HomeHeaderDetailsSearch = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    ${theme.mixins.input()};
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 0;
-    input {
-      background: transparent;
-      border: none;
-      height: 100%;
-      color: ${theme.colors.textColor};
-    }
-  `}
-`;
-
-export const HomeProductTitle = styled.h2`
-  ${({ theme }) => css`
-    margin: 0;
-    border-bottom: 1px solid ${theme.colors.baseLine};
-    ${theme.mixins.bodyStyle()};
-    color: ${theme.colors.primaryColor};
-    padding-bottom: 10px;
-    b {
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -13px;
-        width: 100%;
-        height: 4px;
-        background-color: ${theme.colors.primaryColor};
-        border-radius: 5rem;
-      }
-    }
-  `}
-`;
-
-export const HomeProductList = styled.div`
-  ${() => css`
-    margin-top: 25px;
-    padding-bottom: 25px;
-  `}
-`;
-
-export const HomeProductListGap = styled.div`
-  ${({ theme }) => css`
-    width: 200px;
-  `}
+export const MangasHeaderContainer = styled.div`
+  width: 100%;
+  margin-left: 13vw;
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
 `;
