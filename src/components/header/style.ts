@@ -1,6 +1,15 @@
 import styled, { css } from "styled-components"; // importing to enable the use of css in this .ts file (must install first)
 import theme from "../../assets/styles/theme";
 
+interface LogoutProps {
+  logout?: boolean;
+  active?: boolean;
+}
+
+interface LogoutButtonProps {
+  active?: boolean;
+}
+
 export const HeaderContainer = styled.header`
   width: 100%;
   height: 3.8rem;
@@ -24,7 +33,6 @@ export const TitleContainer = styled.div`
   width: 50%;
   display: flex;
   background-color: ${theme.colors.primaryColor};
-  /* justify-content: space-between; */
   align-items: center;
   box-sizing: border-box;
   img {
@@ -59,7 +67,6 @@ export const SearchInputContainer = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
-  /* padding-left: 15rem; */
   gap: 10px;
 
   input {
@@ -90,12 +97,13 @@ export const HeaderNav = styled.div`
   background-color: #913fe2;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   nav {
     width: 100%;
   }
 `;
 
-export const Menu = styled.div`
+export const Pages = styled.div`
   margin-left: 13vw;
   line-height: 2.5;
   position: relative;
@@ -130,4 +138,50 @@ export const Link = styled.span`
   font-family: fira sans, sans-serif;
   font-size: 0.9rem;
   text-decoration: none;
+`;
+
+export const Logout = styled.div<LogoutProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 16rem;
+  /* border-radius: 12px 0px 0px 12px; */
+
+  ${({ logout }) =>
+    logout &&
+    css`
+      bottom: 0;
+      width: calc(6.5rem - 12px);
+      border-radius: 16px;
+    `}
+
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #252836;
+    `}
+`;
+
+export const LogoutButton = styled.button<LogoutButtonProps>`
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  background-color: #913fe2;
+  border-radius: 8px;
+  color: #6cea69;
+  cursor: pointer;
+
+  :hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+  }
+
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #6cea69;
+      color: #ffffff;
+    `}
 `;

@@ -2,7 +2,8 @@ import * as S from "./style";
 import Icon from "../../assets/imgs/icons/Icon.webp";
 import { DateTime } from "luxon";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { IoIosLogOut } from "react-icons/io";
+import { useNavigate } from "react-router-dom"; //is a method to navigate to a certain page from the basic url, make sure it's defined in the route.ts
 import { Dispatch, SetStateAction } from "react";
 
 interface HeaderProps {
@@ -20,6 +21,7 @@ const Header = ({ path, setLogged }: HeaderProps) => {
     setLogged(false);
     navigate("/login");
   };
+
   return (
     <header>
       <S.HeaderContainer>
@@ -38,7 +40,7 @@ const Header = ({ path, setLogged }: HeaderProps) => {
         </S.SearchContainer>
       </S.HeaderContainer>
       <S.HeaderNav>
-        <S.Menu>
+        <S.Pages>
           <S.Box href="/">
             <S.Link>Home</S.Link>
           </S.Box>
@@ -51,7 +53,12 @@ const Header = ({ path, setLogged }: HeaderProps) => {
           <S.Box href="/settings">
             <S.Link>Settings</S.Link>
           </S.Box>
-        </S.Menu>
+        </S.Pages>
+        <S.Logout logout>
+          <S.LogoutButton onClick={handleLogout}>
+            <IoIosLogOut color="#ffff" width="5rem" height="5rem" />
+          </S.LogoutButton>
+        </S.Logout>
       </S.HeaderNav>
     </header>
   );
