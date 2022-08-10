@@ -5,7 +5,7 @@ interface GenresNavigationButtonProps {
   active?: boolean;
 }
 
-export const home = styled.section`
+export const favorites = styled.section`
   ${({ theme }) => css`
     background-color: ${theme.colors.background};
     min-width: 100vw;
@@ -16,7 +16,7 @@ export const home = styled.section`
   `}
 `;
 
-export const HomeContent = styled.main`
+export const FavoritesContent = styled.main`
   ${() => css`
     width: 100%;
     /* padding: 20px; */
@@ -76,8 +76,8 @@ export const MangasHeaderContainer = styled.div`
 
 export const SearchContainer = styled.div`
   position: absolute;
-  margin-top: -6.6rem;
-  margin-left: 55rem;
+  margin-top: -5.6rem;
+  margin-left: 65rem;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -19,7 +19,7 @@ const Header = ({ path, setLogged }: HeaderProps) => {
 
   const handleLogout = () => {
     setLogged(false);
-    navigate("/login");
+    navigate("/Login");
   };
 
   const handlehome = () => {
@@ -30,6 +30,10 @@ const Header = ({ path, setLogged }: HeaderProps) => {
     navigate("/Settings");
   };
 
+  const handlefavorites = () => {
+    navigate("/Favorites");
+  };
+
   return (
     <header>
       <S.HeaderContainer>
@@ -38,14 +42,16 @@ const Header = ({ path, setLogged }: HeaderProps) => {
           <h1>MangaScans</h1>
           <p>{formatedDate}</p>
         </S.TitleContainer>
-        <S.SearchContainer>
+        {/* <S.SearchContainer>
           <S.SearchInputContainer>
+              <form>
             <input placeholder="Search" />
             <button>
               <FaSearch color="#555" />
             </button>
+            </form>
           </S.SearchInputContainer>
-        </S.SearchContainer>
+        </S.SearchContainer> */}
       </S.HeaderContainer>
       <S.HeaderNav>
         <S.Pages>
@@ -53,10 +59,7 @@ const Header = ({ path, setLogged }: HeaderProps) => {
             <S.Link onClick={handlehome}>Home</S.Link>
           </S.Box>
           <S.Box>
-            <S.Link>Favorites</S.Link>
-          </S.Box>
-          <S.Box>
-            <S.Link>New Manga</S.Link>
+            <S.Link onClick={handlefavorites}>Favorites</S.Link>
           </S.Box>
           <S.Box>
             <S.Link onClick={handlesettings}>Settings</S.Link>

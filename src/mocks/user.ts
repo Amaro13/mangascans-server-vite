@@ -11,4 +11,13 @@ export const mockedUsers: T.User[] = [
     createdAt: new Date(),
     updatedAt: new Date(),
   },
+  {
+    id: "87b8da85-7641-46bi-a731-2d02e4ae4e62",
+    username: "Amaro12",
+    email: "another@outlook.com",
+    password: "abuter",
+    image: Icon,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
 ];
