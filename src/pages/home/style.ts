@@ -64,4 +64,60 @@ export const MangasHeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+
+  h2 {
+    font-size: 16px;
+    color: #fff;
+    line-height: 20px;
+    font-weight: 550;
+    font-family: fira sans, sans-serif;
+  }
+`;
+
+export const SearchContainer = styled.div`
+  position: absolute;
+  margin-top: -6.6rem;
+  margin-left: 55rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SearchInputContainer = styled.div`
+  width: 21.875rem;
+  height: 2.125rem;
+  background-color: #16151b;
+  border: 1px solid #393c49;
+  border-radius: 3px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+
+  form {
+    display: flex;
+    width: 21.875rem;
+  }
+  input {
+    background-color: #16151b;
+    width: 21.875rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 0.375rem 0.75rem;
+    padding-top: 0.375rem;
+    padding-right: 1.875rem;
+    padding-bottom: 0.375rem;
+    padding-left: 0.75rem;
+    :focus {
+      outline: none;
+    }
+  }
+  button {
+    background-color: #16151b;
+    width: 3.125rem;
+    height: 2.125rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
 `;
