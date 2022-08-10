@@ -19,7 +19,7 @@ const Header = ({ path, setLogged }: HeaderProps) => {
 
   const handleLogout = () => {
     setLogged(false);
-    navigate("/login");
+    navigate("/Login");
   };
 
   const handlehome = () => {
@@ -28,6 +28,10 @@ const Header = ({ path, setLogged }: HeaderProps) => {
 
   const handlesettings = () => {
     navigate("/Settings");
+  };
+
+  const handlefavorites = () => {
+    navigate("/Favorites");
   };
 
   return (
@@ -55,10 +59,7 @@ const Header = ({ path, setLogged }: HeaderProps) => {
             <S.Link onClick={handlehome}>Home</S.Link>
           </S.Box>
           <S.Box>
-            <S.Link>Favorites</S.Link>
-          </S.Box>
-          <S.Box>
-            <S.Link>New Manga</S.Link>
+            <S.Link onClick={handlefavorites}>Favorites</S.Link>
           </S.Box>
           <S.Box>
             <S.Link onClick={handlesettings}>Settings</S.Link>
