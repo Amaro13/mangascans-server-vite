@@ -8,11 +8,12 @@ import { FaSearch } from "react-icons/fa";
 import { mockedFavorites } from "../../mocks/favorite";
 import { mockedUsers } from "../../mocks/user";
 
-interface FavoritesProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
-}
+// interface FavoritesProps {
+//   setLogged: Dispatch<SetStateAction<boolean>>;
+// }
 
-const Favorites = ({ setLogged }: FavoritesProps) => {
+// const Favorites = ({ setLogged }: FavoritesProps) => {
+const Favorites = () => {
   const [activeUser, setactiveUser] = useState<User>(mockedUsers[0]);
 
   const filteredFavorites: Favorite[] = mockedFavorites.filter(
@@ -32,7 +33,7 @@ const Favorites = ({ setLogged }: FavoritesProps) => {
   return (
     <S.favorites>
       <S.FavoritesContent>
-        <Header path="favorites" setLogged={setLogged} />
+        <Header path="favorites" />
 
         {/* <S.GenresNavigationBar> */}
         <S.SearchContainer>

@@ -5,22 +5,28 @@ import { FaSearch } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 import { useNavigate } from "react-router-dom"; //is a method to navigate to a certain page from the basic url, make sure it's defined in the route.ts
 import { Dispatch, SetStateAction } from "react";
+import toast from "react-hot-toast";
+import { useAuth } from "../../contexts/auth";
 
 interface HeaderProps {
   path: "home" | "settings" | "favorites" | "New Manga";
-  setLogged: Dispatch<SetStateAction<boolean>>;
+  // setLogged: Dispatch<SetStateAction<boolean>>;
 }
 
 const actualDate = DateTime.now().setLocale("en");
 const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
-const Header = ({ path, setLogged }: HeaderProps) => {
+// const Header = ({ path, setLogged }: HeaderProps) => {
+const Header = ({ path }: HeaderProps) => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    setLogged(false);
-    navigate("/Login");
-  };
+  // const handleLogout = () => {
+  //   localStorage.clear();
+  //   setLogged(false);
+  //   navigate("/Login");
+  //   toast.success("Logout successfully");
+  // };
+  const { logout } = useAuth();
 
   const handlehome = () => {
     navigate("/");
@@ -66,7 +72,12 @@ const Header = ({ path, setLogged }: HeaderProps) => {
           </S.Box>
         </S.Pages>
         <S.Logout logout>
-          <S.LogoutButton onClick={handleLogout}>
+          <S.LogoutButton
+            onClick={() => {
+              logout();
+              toast.success("Logout successfully!");
+            }}
+          >
             <IoIosLogOut color="#ffff" width="5rem" height="5rem" />
           </S.LogoutButton>
         </S.Logout>

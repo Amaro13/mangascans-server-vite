@@ -5,26 +5,43 @@ import Button from "../../components/button";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import axios from "axios";
+import { useAuth } from "../../contexts/auth";
 
-interface LoginProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
-}
+// interface LoginProps {
+//   setLogged: Dispatch<SetStateAction<boolean>>;
+// }
 
-const Login = ({ setLogged }: LoginProps) => {
-  const navigate = useNavigate();
+// const Login = ({ setLogged }: LoginProps) => {
+//   const navigate = useNavigate();
+const Login = () => {
+  const { login } = useAuth();
 
-  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleLogin = () => {
-    if (email === "admin" && password === "admin") {
-      setLogged(true);
-      navigate("/");
-      toast.success("Login successfully!");
-      return;
+    if (username !== "" && password !== "") {
+      const data = {
+        username,
+        password,
+      };
+      return axios
+        .post("http://localhost:3333/auth/login", data)
+        .then((res) => {
+          // localStorage.setItem("token", res.data.token);
+          // localStorage.setItem("user", JSON.stringify(res.data.user));
+          // setLogged(true);
+          // navigate("/");
+          // toast.success("Login successfully!");
+          login({ token: res.data.token, user: res.data.user });
+        })
+        .catch(() => {
+          toast.error("Invalid username or password!");
+        });
     }
 
-    toast.error("Incorrect user/password.");
+    toast.error("Fill the fields to login!");
   };
 
   return (
@@ -35,9 +52,9 @@ const Login = ({ setLogged }: LoginProps) => {
           <img alt="logo" src={Icon} />
         </S.LoginLogoContainer>
         <Input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
         />
         <Input
           type="password"

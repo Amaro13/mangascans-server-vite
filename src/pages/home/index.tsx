@@ -7,21 +7,22 @@ import { mockedGenres } from "../../mocks/genre";
 import { Genre, Manga } from "../../types/interfaces";
 import { FaSearch } from "react-icons/fa";
 
-interface HomeProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
-}
+// interface HomeProps {
+//   setLogged: Dispatch<SetStateAction<boolean>>;
+// }
 
-// para inserir no localStorage:
+// to insert in local storage:
 
 // localStorage.setItem('key', true);
 
-// Para fazer a leitura:
+// To read from there:
 
 // if (localStorage.key) {
 //       setLogin(true);
 //     };
 
-const Home = ({ setLogged }: HomeProps) => {
+// const Home = ({ setLogged }: HomeProps) => {
+const Home = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre>(mockedGenres[0]);
 
   const filteredGenres: Manga[] = mockedManga.filter(
@@ -31,7 +32,7 @@ const Home = ({ setLogged }: HomeProps) => {
   return (
     <S.home>
       <S.HomeContent>
-        <Header path="home" setLogged={setLogged} />
+        <Header path="home" />
 
         <S.GenresNavigationBar>
           {mockedGenres.map((element) => {

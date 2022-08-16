@@ -131,6 +131,8 @@ now within you can start calling the router to start the project.
         </div>
         </section>
 
+    *) The context is a form that creates a way to pass within the data tree of components whithout needing to pass the props manually in each level.
+
 * to import the webp image in react.typescript use:
     import img from "./images/image.webp";
     <img src={img} />

@@ -6,14 +6,15 @@ import Button from "../../components/button";
 import { mockedManga } from "../../mocks/manga";
 import SettingsMangaCard from "../../components/SettingsMangaCard";
 
-interface SettingsProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
-}
+// interface SettingsProps {
+//   setLogged: Dispatch<SetStateAction<boolean>>;
+// }
 
-const Settings = ({ setLogged }: SettingsProps) => {
+// const Settings = ({ setLogged }: SettingsProps) => {
+const Settings = () => {
   return (
     <S.SettingsContainer>
-      <Header path="settings" setLogged={setLogged} />
+      <Header path="settings" />
       <S.SettingsFlow>
         <S.SettingsNavigationContainer>
           <h2>Settings</h2>
