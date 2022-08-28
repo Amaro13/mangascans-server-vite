@@ -4,15 +4,16 @@ import Header from "../../components/header";
 import { useMangas } from "../../contexts/mangas";
 import MangaList from "../../components/MangaList";
 import { Favorite, Manga, User } from "../../types/interfaces";
-import { mockedFavorites } from "../../mocks/favorite";
-import { mockedUsers } from "../../mocks/user";
+import { useFavorites } from "../../contexts/favorites";
 
 const Favorites = () => {
-  const [activeUser, setactiveUser] = useState<User>(mockedUsers[0]);
   const { mangas } = useMangas();
+  const { favorites } = useFavorites();
 
-  const filteredFavorites: Favorite[] = mockedFavorites.filter(
-    (element) => element.userId === activeUser.id
+  const user: User = JSON.parse(localStorage.getItem("user") || "");
+
+  const filteredFavorites: Favorite[] = favorites.filter(
+    (element) => element.userId === user.id
   );
 
   const filteredManga = (req1: Favorite[], req2: Manga[]) => {

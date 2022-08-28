@@ -8,7 +8,7 @@ import {
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services"; // importing from the axios connection
-import { User } from "../../types/interfaces";
+import { User } from "../../types/interfaces"; //Notice that you don't need to import the user from api because the auth api already references the user api
 
 interface AuthProviderProps {
   children: ReactNode;

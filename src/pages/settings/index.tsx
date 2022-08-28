@@ -5,9 +5,13 @@ import { IoIosSettings } from "react-icons/io";
 import Button from "../../components/button";
 import { useMangas } from "../../contexts/mangas";
 import SettingsMangaCard from "../../components/SettingsMangaCard";
+import { useGenres } from "../../contexts/genres";
+import { useUsers } from "../../contexts/users";
 
 const Settings = () => {
   const { mangas } = useMangas();
+  const { genres } = useGenres();
+  const { users } = useUsers();
   return (
     <S.SettingsContainer>
       <Header path="settings" />
