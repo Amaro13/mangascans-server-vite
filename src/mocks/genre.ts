@@ -10,7 +10,7 @@ export const mockedGenres: T.Genre[] = [
     name: "Action",
   },
   {
-    id: "f00259a5-0378-4498-b50b-1ee55e636c71",
-    name: "Gore",
+    id: "3bc90f8e-358c-479f-955d-3a378634c7d9",
+    name: "Martial Arts",
   },
 ];

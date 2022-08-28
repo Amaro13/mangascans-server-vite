@@ -3,15 +3,11 @@ import Header from "../../components/header";
 import * as S from "./style";
 import { IoIosSettings } from "react-icons/io";
 import Button from "../../components/button";
-import { mockedManga } from "../../mocks/manga";
+import { useMangas } from "../../contexts/mangas";
 import SettingsMangaCard from "../../components/SettingsMangaCard";
 
-// interface SettingsProps {
-//   setLogged: Dispatch<SetStateAction<boolean>>;
-// }
-
-// const Settings = ({ setLogged }: SettingsProps) => {
 const Settings = () => {
+  const { mangas } = useMangas();
   return (
     <S.SettingsContainer>
       <Header path="settings" />
@@ -60,7 +56,7 @@ const Settings = () => {
               <h3>+</h3>
               <p>Add Item</p>
             </S.AddEntityCard>
-            {mockedManga.map((element) => (
+            {mangas.map((element) => (
               <SettingsMangaCard manga={element} key={element.id} />
             ))}
           </S.EntitiesEditList>

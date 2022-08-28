@@ -7,8 +7,8 @@ import {
 } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../services"; // importing from the axios connection
 import { User } from "../../types/interfaces";
-import axios from "axios";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       },
     };
 
-    axios
+    api
       .get(`http://localhost:3333/users/${user.id}`, headers)
       .then(() => {
         setLogged(true);

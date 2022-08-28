@@ -1,32 +1,19 @@
 import * as S from "./style"; //importing all const exports from style contained within as S
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import Header from "../../components/header";
-import { mockedManga } from "../../mocks/manga";
+import { useMangas } from "../../contexts/mangas";
 import MangaList from "../../components/MangaList";
 import { mockedGenres } from "../../mocks/genre";
 import { Genre, Manga } from "../../types/interfaces";
-import { FaSearch } from "react-icons/fa";
 
-// interface HomeProps {
-//   setLogged: Dispatch<SetStateAction<boolean>>;
-// }
-
-// to insert in local storage:
-
-// localStorage.setItem('key', true);
-
-// To read from there:
-
-// if (localStorage.key) {
-//       setLogin(true);
-//     };
-
-// const Home = ({ setLogged }: HomeProps) => {
 const Home = () => {
-  const [selectedGenre, setSelectedGenre] = useState<Genre>(mockedGenres[0]);
+  const { mangas } = useMangas();
+  console.log(mangas);
 
-  const filteredGenres: Manga[] = mockedManga.filter(
-    (element) => element.genreId === selectedGenre.id
+  const [selectedGenre, setSelectedGenre] = useState<Genre>(mockedGenres[0]); //// must always create the useState before you create the useEffect
+
+  const filteredMangas: Manga[] = mangas.filter(
+    (element) => selectedGenre && element.genreId === selectedGenre.id
   );
 
   return (
@@ -45,26 +32,11 @@ const Home = () => {
               </S.GenresNavigationButton>
             );
           })}
-          <S.SearchContainer>
-            <S.SearchInputContainer>
-              <form>
-                <input
-                  type="text"
-                  placeholder="Search"
-                  // onChange={filterByName}
-                />
-                <button type="submit">
-                  <FaSearch color="#555" />
-                </button>
-              </form>
-            </S.SearchInputContainer>
-          </S.SearchContainer>
         </S.GenresNavigationBar>
         <S.MangasHeaderContainer>
           <h2>Manga Lists</h2>
         </S.MangasHeaderContainer>
-        <MangaList list={filteredGenres} />
-        {/* <MangaList list={filteredMangas} /> */}
+        <MangaList list={filteredMangas} />
       </S.HomeContent>
     </S.home>
   );

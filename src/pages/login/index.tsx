@@ -1,9 +1,9 @@
 import * as S from "./style";
 import Icon from "../../assets/imgs/icons/Icon.webp";
 import Button from "../../components/button";
-import { toast } from "react-hot-toast";
-import { api } from "../../services";
-import { useAuth } from "../../contexts/auth";
+import { toast } from "react-hot-toast"; // used for automatic messages
+import { api } from "../../services"; // importing the api instance created with axios
+import { useAuth } from "../../contexts/auth"; // the authorization context check
 import { useForm } from "react-hook-form"; // used to make forms
 import * as yup from "yup"; // used to validate the inputs
 import { yupResolver } from "@hookform/resolvers/yup"; // used to unite the useForm and yup

@@ -48,16 +48,16 @@ const Header = ({ path }: HeaderProps) => {
           <h1>MangaScans</h1>
           <p>{formatedDate}</p>
         </S.TitleContainer>
-        {/* <S.SearchContainer>
+        <S.SearchContainer>
           <S.SearchInputContainer>
-              <form>
-            <input placeholder="Search" />
-            <button>
-              <FaSearch color="#555" />
-            </button>
+            <form>
+              <input placeholder="Search" />
+              <button>
+                <FaSearch color="#555" />
+              </button>
             </form>
           </S.SearchInputContainer>
-        </S.SearchContainer> */}
+        </S.SearchContainer>
       </S.HeaderContainer>
       <S.HeaderNav>
         <S.Pages>
