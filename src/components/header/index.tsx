@@ -33,7 +33,7 @@ const Header = ({ path }: HeaderProps) => {
   };
 
   const handlesettings = () => {
-    navigate("/Settings");
+    navigate("/Settings/mangas");
   };
 
   const handlefavorites = () => {
