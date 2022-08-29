@@ -4,7 +4,8 @@ import { useAuth } from "./contexts/auth";
 import Favorites from "./pages/favorites";
 import Home from "./pages/home";
 import Login from "./pages/login";
-import Settings from "./pages/settings";
+import SettingsGenres from "./pages/settingsgenres";
+import SettingsMangas from "./pages/settingsmangas";
 
 // interface RouterProps {
 //   logged: boolean;
@@ -19,7 +20,9 @@ const Router = () => {
       {logged ? (
         <>
           <Route path="/" element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings/mangas" element={<SettingsMangas />} />
+          <Route path="/settings/genres" element={<SettingsGenres />} />
+          <Route path="/settings/users" element={<SettingsMangas />} />
           <Route path="/favorites" element={<Favorites />} />
         </>
       ) : (
