@@ -6,11 +6,11 @@ interface ActiveButtonProps {
 
 export const SettingsContainer = styled.div`
   ${({ theme }) => css`
-    width: 100%;
-    height: 100vh;
+    width: 20%;
+    height: 100%;
     color: #fff;
     display: flex;
-    /* flex-flow: column; */
+    flex-flow: column;
     background-color: ${theme.colors.baseBg1};
   `}
 `;
@@ -20,7 +20,7 @@ export const SettingsNavigationButtonsList = styled.div`
     width: 100%;
     height: calc(100% - 3rem);
     background-color: ${theme.colors.baseBg2};
-    margin: 1.5rem 0;
+    /* margin: 1.5rem 0; */
     border-radius: 8px;
     overflow: hidden;
   `}

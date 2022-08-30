@@ -12,6 +12,10 @@ export const SettingsMangaCardContainer = styled.div`
     justify-content: space-between;
     color: ${theme.colors.textColor};
     text-align: center;
+    div {
+      display: flex;
+      width: 100%;
+    }
 
     img {
       width: 10.25rem;
@@ -26,11 +30,12 @@ export const SettingsMangaCardContainer = styled.div`
 
 export const SettingsMangaCardButton = styled.button`
   ${({ theme }) => css`
-    height: 2.531rem;
-    width: 100%;
-    border-radius: 0px 0px 8px 8px;
+    height: 1.25rem;
+    width: 50%;
+    border-radius: 0px 0px 8px 0px;
     background-color: ${theme.colors.primaryColorOpacity};
     color: ${theme.colors.primaryColor};
+    border: 1px solid ${theme.colors.primaryColor};
     display: flex;
     align-items: center;
     justify-content: center;

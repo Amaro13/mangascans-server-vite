@@ -6,13 +6,8 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import SettingsGenres from "./pages/settingsgenres";
 import SettingsMangas from "./pages/settingsmangas";
+import SettingsUsers from "./pages/settingsusers";
 
-// interface RouterProps {
-//   logged: boolean;
-//   setLogged: Dispatch<SetStateAction<boolean>>;
-// }
-
-// const Router = ({ logged, setLogged }: RouterProps) => {
 const Router = () => {
   const { logged } = useAuth();
   return (
@@ -22,7 +17,7 @@ const Router = () => {
           <Route path="/" element={<Home />} />
           <Route path="/settings/mangas" element={<SettingsMangas />} />
           <Route path="/settings/genres" element={<SettingsGenres />} />
-          <Route path="/settings/users" element={<SettingsMangas />} />
+          <Route path="/settings/users" element={<SettingsUsers />} />
           <Route path="/favorites" element={<Favorites />} />
         </>
       ) : (

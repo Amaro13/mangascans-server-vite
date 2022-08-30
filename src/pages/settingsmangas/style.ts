@@ -14,16 +14,26 @@ export const SettingsContainer = styled.div`
   `}
 `;
 
+export const joining = styled.div`
+  ${({ theme }) => css`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    /* flex-direction: column; */
+    background-color: ${theme.colors.baseBg1};
+  `}
+`;
+
 export const EntitiesEditContainer = styled.div`
   ${({ theme }) => css`
     width: 100%;
     height: calc(100% - 6.25rem);
-    margin-top: 4.75rem;
-    margin-bottom: 1.5rem;
-    margin-right: 1.5rem;
+    /* margin-top: 4.75rem; */
+    /* margin-bottom: 1.5rem; */
+    /* margin-right: 1.5rem; */
     box-sizing: border-box;
     background-color: ${theme.colors.baseBg2};
-    border-radius: 8px;
+    /* border-radius: 8px; */
     color: ${theme.colors.textColor};
     h2 {
       margin: 2.125rem 0;

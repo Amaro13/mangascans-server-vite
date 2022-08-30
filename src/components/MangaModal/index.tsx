@@ -34,7 +34,9 @@ const newMangaSchema = yup.object().shape({
 
   description: yup.string().required("Manga description is mandatory"),
 
-  price: yup.number().required("Manga chapters is mandatory"),
+  chapters: yup.number().required("Manga chapters is mandatory"),
+
+  genreId: yup.string().required("Manga genre is mandatory"),
 
   image: yup
     .string()
@@ -47,7 +49,9 @@ const updateMangaSchema = yup.object().shape({
 
   description: yup.string(),
 
-  price: yup.number(),
+  chapters: yup.number(),
+
+  genreId: yup.string(),
 
   image: yup.string().url("Invalid URL format"),
 });
@@ -76,6 +80,7 @@ const MangaModal = ({ handleOpenModal, manga, setManga }: MangaModalProsp) => {
 
   const handleNewManga = (data: NewMangaData) => {
     data.genreId = genreId;
+    console.log(data.genreId);
 
     api
       .post("/mangas", data, headers)
@@ -85,7 +90,7 @@ const MangaModal = ({ handleOpenModal, manga, setManga }: MangaModalProsp) => {
         handleOpenModal();
         setManga(undefined);
       })
-      .catch(() => toast.error("Select a Genre"));
+      .catch(() => toast.error("Failed to create the manga"));
   };
 
   const handleUpdateManga = (data: NewMangaData) => {

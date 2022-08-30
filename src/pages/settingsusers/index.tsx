@@ -1,26 +1,26 @@
 import { useState } from "react";
 import { IoIosSettings, IoIosTrash } from "react-icons/io";
-import GenreModal from "../../components/GenreModal";
-import DeleteGenreModal from "../../components/DeleteGenreModal";
+import UserModal from "../../components/UserModal";
+import DeleteUserModal from "../../components/DeleteUserModal";
 import Header from "../../components/header";
 import SettingsMenu from "../../components/SettingsMenu";
-import { Genre } from "../../types/interfaces";
+import { User } from "../../types/interfaces";
 import * as S from "./style";
-import { useGenres } from "../../contexts/genres";
+import { useUsers } from "../../contexts/users";
 
-const SettingsGenres = () => {
-  const { genres } = useGenres();
+const SettingsUsers = () => {
+  const { users } = useUsers();
 
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
-  const [genre, setGenre] = useState<Genre | undefined>(undefined);
+  const [user, setUser] = useState<User | undefined>(undefined);
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
   };
 
-  const handleOpenUpdateModal = (genre: Genre) => {
-    setGenre(genre);
+  const handleOpenUpdateModal = (user: User) => {
+    setUser(user);
     setOpenModal(!openModal);
   };
 
@@ -31,32 +31,33 @@ const SettingsGenres = () => {
   return (
     <S.SettingsContainer>
       <Header path="settings" />
-      <SettingsMenu path="genres" />
+      <SettingsMenu path="users" />
       <S.EntitiesEditContainer>
-        <h2>Manage Genres</h2>
+        <h2>Manage Users</h2>
         <S.EntitiesEditList>
           <S.AddEntityCard onClick={handleOpenModal}>
             <h3>+</h3>
-            <p>Add Genre</p>
+            <p>Add User</p>
           </S.AddEntityCard>
-          {genres.map((element) => {
+          {users.map((element) => {
             return (
               <S.EntityCard key={element.id}>
-                <p>{element.name}</p>
+                <p>{element.username}</p>
+                {/* <img>{element.image}</img> */}
                 <div>
-                  <S.SettingsGenreDeleteButton
+                  <S.SettingsUserDeleteButton
                     onClick={() => {
-                      setGenre(element);
+                      setUser(element);
                       handleOpenDeleteModal();
                     }}
                   >
                     <IoIosTrash /> Remove
-                  </S.SettingsGenreDeleteButton>
-                  <S.SettingsGenreEditButton
+                  </S.SettingsUserDeleteButton>
+                  <S.SettingsUserEditButton
                     onClick={() => handleOpenUpdateModal(element)}
                   >
                     <IoIosSettings /> Edit
-                  </S.SettingsGenreEditButton>
+                  </S.SettingsUserEditButton>
                 </div>
               </S.EntityCard>
             );
@@ -64,21 +65,21 @@ const SettingsGenres = () => {
         </S.EntitiesEditList>
       </S.EntitiesEditContainer>
       {openModal && (
-        <GenreModal
-          setGenre={setGenre}
-          genre={genre}
+        <UserModal
+          setUser={setUser}
+          user={user}
           handleOpenModal={handleOpenModal}
         />
       )}
       {openDeleteModal && (
-        <DeleteGenreModal
-          genreId={genre?.id}
+        <DeleteUserModal
+          userId={user?.id}
           handleOpenDeleteModal={handleOpenDeleteModal}
-          setGenre={setGenre}
+          setUser={setUser}
         />
       )}
     </S.SettingsContainer>
   );
 };
 
-export default SettingsGenres;
+export default SettingsUsers;

@@ -40,55 +40,53 @@ const SettingsMangas = () => {
   return (
     <S.SettingsContainer>
       <Header path="settings" />
-      <SettingsMenu path="mangas" />
-      <S.EntitiesEditContainer>
-        <h2>Manage Mangas</h2>
-        <S.EntitiesEditCategoriesSelector className="entities-edit-categories-selector">
-          {genres.map((element) => {
-            return (
-              <S.EntitiesEditCategoriesButton
-                active={element.name === selectedGenre.name}
-                onClick={() => setSelectedGenre(element)}
-              >
-                {element.name}
-              </S.EntitiesEditCategoriesButton>
-            );
-          })}
-        </S.EntitiesEditCategoriesSelector>
-        <S.EntitiesEditList>
-          <S.AddEntityCard onClick={handleOpenModal}>
-            <h3>+</h3>
-            <p>Add Item</p>
-          </S.AddEntityCard>
-          {filteredMangas.map((element) => (
-            <SettingsMangaCard
-              handleOpenModal={handleOpenModal}
-              handleOpenDeleteModal={handleOpenDeleteModal}
-              setManga={setManga}
-              manga={element}
-              key={element.id}
-            />
-          ))}
-        </S.EntitiesEditList>
-        <S.ConfirmationContainer>
-          <Button text="Cancel" variant="cancel" />
-          <Button text="Save Changes" />
-        </S.ConfirmationContainer>
-      </S.EntitiesEditContainer>
-      {openModal && (
-        <MangaModal
-          setManga={setManga}
-          manga={manga}
-          handleOpenModal={handleOpenModal}
-        />
-      )}
-      {openDeleteModal && (
-        <DeleteMangaModal
-          setManga={setManga}
-          mangaId={manga?.id}
-          handleOpenDeleteModal={handleOpenDeleteModal}
-        />
-      )}
+      <S.joining>
+        <SettingsMenu path="mangas" />
+        <S.EntitiesEditContainer>
+          <h2>Manage Mangas</h2>
+          <S.EntitiesEditCategoriesSelector className="entities-edit-categories-selector">
+            {genres.map((element) => {
+              return (
+                <S.EntitiesEditCategoriesButton
+                  active={element.name === selectedGenre.name}
+                  onClick={() => setSelectedGenre(element)}
+                >
+                  {element.name}
+                </S.EntitiesEditCategoriesButton>
+              );
+            })}
+          </S.EntitiesEditCategoriesSelector>
+          <S.EntitiesEditList>
+            <S.AddEntityCard onClick={handleOpenModal}>
+              <h3>+</h3>
+              <p>Add Item</p>
+            </S.AddEntityCard>
+            {filteredMangas.map((element) => (
+              <SettingsMangaCard
+                handleOpenModal={handleOpenModal}
+                handleOpenDeleteModal={handleOpenDeleteModal}
+                setManga={setManga}
+                manga={element}
+                key={element.id}
+              />
+            ))}
+          </S.EntitiesEditList>
+        </S.EntitiesEditContainer>
+        {openModal && (
+          <MangaModal
+            setManga={setManga}
+            manga={manga}
+            handleOpenModal={handleOpenModal}
+          />
+        )}
+        {openDeleteModal && (
+          <DeleteMangaModal
+            setManga={setManga}
+            mangaId={manga?.id}
+            handleOpenDeleteModal={handleOpenDeleteModal}
+          />
+        )}
+      </S.joining>
     </S.SettingsContainer>
   );
 };

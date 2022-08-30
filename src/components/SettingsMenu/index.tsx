@@ -10,7 +10,7 @@ const SettingsMenu = ({ path }: SettingsMenuProps) => {
   const navigate = useNavigate();
   return (
     <S.SettingsContainer>
-      <h2>Settings</h2>
+      {/* <h2>Settings</h2> */}
       <S.SettingsNavigationButtonsList>
         <S.SettingsNavigationButtonContainer
           active={path === "mangas"}
