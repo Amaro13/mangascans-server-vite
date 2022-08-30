@@ -29,7 +29,7 @@ const DeleteGenreModal = ({
       },
     };
 
-    api.delete(`/genres/${genreId}`, headers).then(() => {
+    api.delete(`/genre/${genreId}`, headers).then(() => {
       toast.success("Genre deleted with success!");
       handleGetGenres();
       setGenre(undefined);

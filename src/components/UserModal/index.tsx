@@ -88,6 +88,7 @@ const UserModal = ({ handleOpenModal, user, setUser }: UserModalProsp) => {
   };
 
   const handleUpdateUser = (data: NewUserData) => {
+    console.log(data);
     api.patch(`/users/${user?.id}`, data, headers).then(() => {
       toast.success("User updated with success");
       handleGetUsers();
