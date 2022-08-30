@@ -31,53 +31,55 @@ const SettingsUsers = () => {
   return (
     <S.SettingsContainer>
       <Header path="settings" />
-      <SettingsMenu path="users" />
-      <S.EntitiesEditContainer>
-        <h2>Manage Users</h2>
-        <S.EntitiesEditList>
-          <S.AddEntityCard onClick={handleOpenModal}>
-            <h3>+</h3>
-            <p>Add User</p>
-          </S.AddEntityCard>
-          {users.map((element) => {
-            return (
-              <S.EntityCard key={element.id}>
-                <p>{element.username}</p>
-                {/* <img>{element.image}</img> */}
-                <div>
-                  <S.SettingsUserDeleteButton
-                    onClick={() => {
-                      setUser(element);
-                      handleOpenDeleteModal();
-                    }}
-                  >
-                    <IoIosTrash /> Remove
-                  </S.SettingsUserDeleteButton>
-                  <S.SettingsUserEditButton
-                    onClick={() => handleOpenUpdateModal(element)}
-                  >
-                    <IoIosSettings /> Edit
-                  </S.SettingsUserEditButton>
-                </div>
-              </S.EntityCard>
-            );
-          })}
-        </S.EntitiesEditList>
-      </S.EntitiesEditContainer>
-      {openModal && (
-        <UserModal
-          setUser={setUser}
-          user={user}
-          handleOpenModal={handleOpenModal}
-        />
-      )}
-      {openDeleteModal && (
-        <DeleteUserModal
-          userId={user?.id}
-          handleOpenDeleteModal={handleOpenDeleteModal}
-          setUser={setUser}
-        />
-      )}
+      <S.joining>
+        <SettingsMenu path="users" />
+        <S.EntitiesEditContainer>
+          <h2>Manage Users</h2>
+          <S.EntitiesEditList>
+            <S.AddEntityCard onClick={handleOpenModal}>
+              <h3>+</h3>
+              <p>Add User</p>
+            </S.AddEntityCard>
+            {users.map((element) => {
+              return (
+                <S.EntityCard key={element.id}>
+                  <p>{element.username}</p>
+                  {/* <img>{element.image}</img> */}
+                  <div>
+                    <S.SettingsUserDeleteButton
+                      onClick={() => {
+                        setUser(element);
+                        handleOpenDeleteModal();
+                      }}
+                    >
+                      <IoIosTrash /> Remove
+                    </S.SettingsUserDeleteButton>
+                    <S.SettingsUserEditButton
+                      onClick={() => handleOpenUpdateModal(element)}
+                    >
+                      <IoIosSettings /> Edit
+                    </S.SettingsUserEditButton>
+                  </div>
+                </S.EntityCard>
+              );
+            })}
+          </S.EntitiesEditList>
+        </S.EntitiesEditContainer>
+        {openModal && (
+          <UserModal
+            setUser={setUser}
+            user={user}
+            handleOpenModal={handleOpenModal}
+          />
+        )}
+        {openDeleteModal && (
+          <DeleteUserModal
+            userId={user?.id}
+            handleOpenDeleteModal={handleOpenDeleteModal}
+            setUser={setUser}
+          />
+        )}
+      </S.joining>
     </S.SettingsContainer>
   );
 };

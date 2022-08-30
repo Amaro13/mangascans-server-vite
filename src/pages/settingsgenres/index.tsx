@@ -31,52 +31,54 @@ const SettingsGenres = () => {
   return (
     <S.SettingsContainer>
       <Header path="settings" />
-      <SettingsMenu path="genres" />
-      <S.EntitiesEditContainer>
-        <h2>Manage Genres</h2>
-        <S.EntitiesEditList>
-          <S.AddEntityCard onClick={handleOpenModal}>
-            <h3>+</h3>
-            <p>Add Genre</p>
-          </S.AddEntityCard>
-          {genres.map((element) => {
-            return (
-              <S.EntityCard key={element.id}>
-                <p>{element.name}</p>
-                <div>
-                  <S.SettingsGenreDeleteButton
-                    onClick={() => {
-                      setGenre(element);
-                      handleOpenDeleteModal();
-                    }}
-                  >
-                    <IoIosTrash /> Remove
-                  </S.SettingsGenreDeleteButton>
-                  <S.SettingsGenreEditButton
-                    onClick={() => handleOpenUpdateModal(element)}
-                  >
-                    <IoIosSettings /> Edit
-                  </S.SettingsGenreEditButton>
-                </div>
-              </S.EntityCard>
-            );
-          })}
-        </S.EntitiesEditList>
-      </S.EntitiesEditContainer>
-      {openModal && (
-        <GenreModal
-          setGenre={setGenre}
-          genre={genre}
-          handleOpenModal={handleOpenModal}
-        />
-      )}
-      {openDeleteModal && (
-        <DeleteGenreModal
-          genreId={genre?.id}
-          handleOpenDeleteModal={handleOpenDeleteModal}
-          setGenre={setGenre}
-        />
-      )}
+      <S.joining>
+        <SettingsMenu path="genres" />
+        <S.EntitiesEditContainer>
+          <h2>Manage Genres</h2>
+          <S.EntitiesEditList>
+            <S.AddEntityCard onClick={handleOpenModal}>
+              <h3>+</h3>
+              <p>Add Genre</p>
+            </S.AddEntityCard>
+            {genres.map((element) => {
+              return (
+                <S.EntityCard key={element.id}>
+                  <p>{element.name}</p>
+                  <div>
+                    <S.SettingsGenreDeleteButton
+                      onClick={() => {
+                        setGenre(element);
+                        handleOpenDeleteModal();
+                      }}
+                    >
+                      <IoIosTrash /> Remove
+                    </S.SettingsGenreDeleteButton>
+                    <S.SettingsGenreEditButton
+                      onClick={() => handleOpenUpdateModal(element)}
+                    >
+                      <IoIosSettings /> Edit
+                    </S.SettingsGenreEditButton>
+                  </div>
+                </S.EntityCard>
+              );
+            })}
+          </S.EntitiesEditList>
+        </S.EntitiesEditContainer>
+        {openModal && (
+          <GenreModal
+            setGenre={setGenre}
+            genre={genre}
+            handleOpenModal={handleOpenModal}
+          />
+        )}
+        {openDeleteModal && (
+          <DeleteGenreModal
+            genreId={genre?.id}
+            handleOpenDeleteModal={handleOpenDeleteModal}
+            setGenre={setGenre}
+          />
+        )}
+      </S.joining>
     </S.SettingsContainer>
   );
 };
