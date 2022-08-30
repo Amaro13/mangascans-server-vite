@@ -9,7 +9,7 @@ interface CardContainerProps {
 export const CardContainer = styled.div<CardContainerProps>`
   ${({ theme }) => css`
     width: 13rem;
-    height: 18.125rem;
+    height: 23.125rem;
     background-color: ${theme.colors.baseBg2};
     border-radius: 16px;
     display: flex;
@@ -29,5 +29,20 @@ export const CardContainer = styled.div<CardContainerProps>`
       height: 15rem;
       padding-bottom: 1rem;
     }
+  `}
+`;
+
+export const MangaCardButton = styled.button`
+  ${({ theme }) => css`
+    height: 1.25rem;
+    width: 50%;
+    border-radius: 0px 0px 8px 0px;
+    background-color: ${theme.colors.terciaryColor};
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
   `}
 `;

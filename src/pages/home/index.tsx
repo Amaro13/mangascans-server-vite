@@ -1,40 +1,69 @@
 import * as S from "./style"; //importing all const exports from style contained within as S
-import { Dispatch, SetStateAction, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/header";
-import { mockedManga } from "../../mocks/manga";
+import { useMangas } from "../../contexts/mangas";
 import MangaList from "../../components/MangaList";
-import { mockedGenres } from "../../mocks/genre";
-import { Genre, Manga } from "../../types/interfaces";
-import { FaSearch } from "react-icons/fa";
+import { useGenres } from "../../contexts/genres";
+import { Favorite, Genre, Manga, User } from "../../types/interfaces";
+import { api } from "../../services";
 
-interface HomeProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
-}
+const Home = () => {
+  const { mangas } = useMangas();
+  const { genres } = useGenres();
 
-// para inserir no localStorage:
+  const [selectedGenre, setSelectedGenre] = useState<Genre>({} as Genre); //// must always create the useState before you create the useEffect, when using useState with a value from api, must give an optional with the inter
 
-// localStorage.setItem('key', true);
+  const [isFavoritesList, setIsFavoritesList] = useState<boolean>(false);
+  const [userFavoritesList, setUserFavoritesList] = useState<Manga[]>([]);
+  const [searchInputValue, setSearchInputValue] = useState<string>("");
 
-// Para fazer a leitura:
+  let filteredMangas: Manga[] =
+    mangas.filter(
+      (element) => selectedGenre && element.genreId === selectedGenre.id
+    ) || mangas;
 
-// if (localStorage.key) {
-//       setLogin(true);
-//     };
+  if (selectedGenre.id == null) {
+    filteredMangas = mangas;
+  }
 
-const Home = ({ setLogged }: HomeProps) => {
-  const [selectedGenre, setSelectedGenre] = useState<Genre>(mockedGenres[0]);
+  const handleGetFavorites = async () => {
+    const token = localStorage.getItem("token");
 
-  const filteredGenres: Manga[] = mockedManga.filter(
-    (element) => element.genreId === selectedGenre.id
-  );
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const user: User = JSON.parse(localStorage.getItem("user") || "");
+
+    const res = await api.get<Favorite[]>(
+      `/favorites/user/${user?.id}`,
+      headers
+    );
+
+    const favorites = res.data;
+
+    const favoritesNames: string[] = favorites.map((elem) => elem.mangaName);
+
+    const favoritesList: Manga[] = mangas.filter((elem) => {
+      return favoritesNames.includes(elem.name);
+    });
+
+    setUserFavoritesList(favoritesList);
+  };
+
+  useEffect(() => {
+    handleGetFavorites();
+  }, [mangas]);
 
   return (
     <S.home>
       <S.HomeContent>
-        <Header path="home" setLogged={setLogged} />
+        <Header path="home" />
 
         <S.GenresNavigationBar>
-          {mockedGenres.map((element) => {
+          {genres.map((element) => {
             return (
               <S.GenresNavigationButton
                 active={element.name === selectedGenre.name}
@@ -44,26 +73,11 @@ const Home = ({ setLogged }: HomeProps) => {
               </S.GenresNavigationButton>
             );
           })}
-          <S.SearchContainer>
-            <S.SearchInputContainer>
-              <form>
-                <input
-                  type="text"
-                  placeholder="Search"
-                  // onChange={filterByName}
-                />
-                <button type="submit">
-                  <FaSearch color="#555" />
-                </button>
-              </form>
-            </S.SearchInputContainer>
-          </S.SearchContainer>
         </S.GenresNavigationBar>
         <S.MangasHeaderContainer>
-          <h2>Manga Lists</h2>
+          <h2>Manga List</h2>
         </S.MangasHeaderContainer>
-        <MangaList list={filteredGenres} />
-        {/* <MangaList list={filteredMangas} /> */}
+        <MangaList list={filteredMangas} />
       </S.HomeContent>
     </S.home>
   );

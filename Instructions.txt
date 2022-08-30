@@ -131,6 +131,38 @@ now within you can start calling the router to start the project.
         </div>
         </section>
 
+13) Install axios with yarn add axios and it's types with yarn add -D @types/axios
+
+14) create the contexts folder in the src folder, inside you will create the context files that you will ned
+    *) The context is a form that creates a way to pass within the data tree of components whithout needing to pass the props manually in each level.
+    Start creating the context for the authorizathion for the login and do a logout if the login is not authorized. (Check the auth folder in the contexts folder for reference)
+
+15) in the router.tsx incorporate the authorization context importing into the logged, then use it to check if there is authorization to go to other pages or if not, to go to the login page
+
+16) In order to create a functioning Login page, you must use a form, inpu, resolver and auth. after creating the auth (witch is a pattern) install the:
+        react-hook-form // used to create forms in react -> install with: yarn add react-hook-form
+        yup // used to validate the inputs -> install with: yarn add yup
+        @hookform/resolvers/yup // used to unite the useForm and yup -> install with: yarn add @hookform/resolvers
+
+
 * to import the webp image in react.typescript use:
     import img from "./images/image.webp";
     <img src={img} />
+
+
+*) useEffect é tipo uma auto função. Como se fosse um if que envolve todo o ambiente, se ele acontecer essa função é executada.
+*) const [characters, setCharacters] = useState([]);
+	useEffect(() => {
+    	getCharacters();
+  	}, [ ]); // esse [] significa início componente, rodando a função somente uma vez no início, colocando uma variável dentro ele detecta qualquer mudança a variável e roda a função sempre que a variável for alterada.
+
+*)O useState serve somente para dar um valor inicial para para uma Variável e uma setVariável para poder servir de proxy para atualizar ela, mesmo sendo uma declaração const.
+	const [characters, setCharacters] = useState([]);
+	Ponto 1) toda vez que o valor de setCharacters mudar, o valor de characters muda e o componente em que ele está incluso é atualizado pelo react(um componente pode ser atualizado sem atualizar o app ou outros componentes, mesmo estes estando inclusos no app).
+	Ponto 2) o parâmetro do useEffect só pode ser vazio ou um State do setState.
+	Ex:
+		useEffect(() => {
+    		getCharacters();
+  		}, [characters]);
+
+*) Vantagem de usar useEffect sem um setState,  se fosse uma outra função, a cada atualização de qualquer outro setState, essa função rodaria novamente, o useEffect com state vazio, somente roda uma vez, independente de outras states atualizadas.
