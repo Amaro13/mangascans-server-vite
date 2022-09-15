@@ -55,11 +55,11 @@ const Login = () => {
           <h1>MangaScans</h1>
           <img alt="logo" src={Icon} />
         </S.LoginLogoContainer>
-        <Input placeholder="Username" {...register("username")} />
+        <Input placeholder="amaroribeiro" {...register("username")} />
         <Input
           type="password"
           {...register("password")}
-          placeholder="Password"
+          placeholder="Abcd@1234"
         />
         <ErrorMessage>
           {errors.username?.message || errors.password?.message}
