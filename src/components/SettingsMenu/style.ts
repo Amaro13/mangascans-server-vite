@@ -18,7 +18,7 @@ export const SettingsContainer = styled.div`
 export const SettingsNavigationButtonsList = styled.div`
   ${({ theme }) => css`
     width: 100%;
-    height: calc(100% - 3rem);
+    height: 100%;
     background-color: ${theme.colors.baseBg2};
     /* margin: 1.5rem 0; */
     border-radius: 8px;

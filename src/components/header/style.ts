@@ -10,7 +10,7 @@ interface LogoutButtonProps {
   active?: boolean;
 }
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.div`
   width: 100%;
   height: 3.8rem;
   display: flex;
