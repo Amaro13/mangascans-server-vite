@@ -12,18 +12,26 @@ const Home = () => {
   const { genres } = useGenres();
 
   const [selectedGenre, setSelectedGenre] = useState<Genre>({} as Genre); //// must always create the useState before you create the useEffect, when using useState with a value from api, must give an optional with the inter
-
+  const [Searchlist, setSearchlist] = useState<Manga[]>([]);
   const [isFavoritesList, setIsFavoritesList] = useState<boolean>(false);
   const [userFavoritesList, setUserFavoritesList] = useState<Manga[]>([]);
-  const [searchInputValue, setSearchInputValue] = useState<string>("");
 
   let filteredMangas: Manga[] =
     mangas.filter(
       (element) => selectedGenre && element.genreId === selectedGenre.id
     ) || mangas;
 
-  if (selectedGenre.id == null) {
+  if (Searchlist.length > 0 && selectedGenre.id == null) {
+    filteredMangas = Searchlist;
+  }
+  if (selectedGenre.id == null && Searchlist.length == 0) {
     filteredMangas = mangas;
+  }
+  if (selectedGenre.id != null && Searchlist.length > 0) {
+    filteredMangas = Searchlist.filter(
+      (element) => selectedGenre && element.genreId === selectedGenre.id
+    );
+    console.log(filteredMangas);
   }
 
   const handleGetFavorites = async () => {
@@ -60,7 +68,7 @@ const Home = () => {
   return (
     <S.home>
       <S.HomeContent>
-        <Header path="home" />
+        <Header setSearchlist={setSearchlist} />
 
         <S.GenresNavigationBar>
           {genres.map((element) => {

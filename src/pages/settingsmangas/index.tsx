@@ -28,6 +28,7 @@ const SettingsMangas = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
   const [manga, setManga] = useState<Manga | undefined>(undefined);
+  const [Searchlist, setSearchlist] = useState<Manga[]>([]);
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
@@ -39,7 +40,7 @@ const SettingsMangas = () => {
 
   return (
     <S.SettingsContainer>
-      <Header path="settings" />
+      <Header setSearchlist={setSearchlist} />
       <S.joining>
         <SettingsMenu path="mangas" />
         <S.EntitiesEditContainer>

@@ -59,7 +59,7 @@ export const SearchContainer = styled.div`
   align-items: center;
 `;
 
-export const SearchInputContainer = styled.div`
+export const SearchInputContainer = styled.form`
   width: 21.875rem;
   height: 2.125rem;
   background-color: #16151b;
@@ -70,10 +70,10 @@ export const SearchInputContainer = styled.div`
   align-items: center;
   gap: 10px;
 
-  form {
+  /* form {
     display: flex;
     width: 21.875rem;
-  }
+  } */
   input {
     background-color: #16151b;
     width: 21.875rem;

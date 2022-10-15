@@ -4,7 +4,7 @@ import UserModal from "../../components/UserModal";
 import DeleteUserModal from "../../components/DeleteUserModal";
 import Header from "../../components/header";
 import SettingsMenu from "../../components/SettingsMenu";
-import { User } from "../../types/interfaces";
+import { Manga, User } from "../../types/interfaces";
 import * as S from "./style";
 import { useUsers } from "../../contexts/users";
 
@@ -14,6 +14,7 @@ const SettingsUsers = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
   const [user, setUser] = useState<User | undefined>(undefined);
+  const [Searchlist, setSearchlist] = useState<Manga[]>([]);
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
@@ -30,7 +31,7 @@ const SettingsUsers = () => {
 
   return (
     <S.SettingsContainer>
-      <Header path="settings" />
+      <Header setSearchlist={setSearchlist} />
       <S.joining>
         <SettingsMenu path="users" />
         <S.EntitiesEditContainer>

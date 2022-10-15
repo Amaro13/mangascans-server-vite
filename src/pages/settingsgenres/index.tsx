@@ -4,7 +4,7 @@ import GenreModal from "../../components/GenreModal";
 import DeleteGenreModal from "../../components/DeleteGenreModal";
 import Header from "../../components/header";
 import SettingsMenu from "../../components/SettingsMenu";
-import { Genre } from "../../types/interfaces";
+import { Genre, Manga } from "../../types/interfaces";
 import * as S from "./style";
 import { useGenres } from "../../contexts/genres";
 
@@ -14,6 +14,7 @@ const SettingsGenres = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
   const [genre, setGenre] = useState<Genre | undefined>(undefined);
+  const [Searchlist, setSearchlist] = useState<Manga[]>([]);
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
@@ -30,7 +31,7 @@ const SettingsGenres = () => {
 
   return (
     <S.SettingsContainer>
-      <Header path="settings" />
+      <Header setSearchlist={setSearchlist} />
       <S.joining>
         <SettingsMenu path="genres" />
         <S.EntitiesEditContainer>

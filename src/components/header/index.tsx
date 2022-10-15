@@ -13,20 +13,30 @@ import { useGenres } from "../../contexts/genres";
 import { api } from "../../services";
 
 interface HeaderProps {
-  path: "home" | "settings" | "favorites";
+  // path: "home" | "settings" | "favorites";
+  setSearchlist: any;
   // setLogged: Dispatch<SetStateAction<boolean>>;
 }
 
-const Header = ({ path }: HeaderProps) => {
+const Header = ({ setSearchlist }: HeaderProps) => {
   const navigate = useNavigate();
   const { mangas } = useMangas();
-
-  const [searchInputValue, setSearchInputValue] = useState<string>("");
+  const [name, setName] = useState("");
 
   const actualDate = DateTime.now().setLocale("en");
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
   const { logout } = useAuth();
+
+  const search = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const response: Manga[] = mangas.filter((element) =>
+      element.name.includes(name)
+    );
+
+    setSearchlist(response);
+    console.log(response);
+  };
 
   const handlehome = () => {
     navigate("/");
@@ -49,17 +59,16 @@ const Header = ({ path }: HeaderProps) => {
           <p>{formatedDate}</p>
         </S.TitleContainer>
         <S.SearchContainer>
-          <S.SearchInputContainer>
-            <form>
-              <input
-                value={searchInputValue}
-                onChange={(e) => setSearchInputValue(e.target.value)}
-                placeholder="Look for the manga"
-              />
-              <button>
-                <FaSearch color="#555" />
-              </button>
-            </form>
+          <S.SearchInputContainer onSubmit={search}>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Look for the manga"
+            />
+            <button type="submit">
+              <FaSearch color="#555" />
+            </button>
           </S.SearchInputContainer>
         </S.SearchContainer>
       </S.HeaderContainer>

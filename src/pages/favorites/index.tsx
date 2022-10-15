@@ -12,6 +12,8 @@ const Favorites = () => {
 
   const user: User = JSON.parse(localStorage.getItem("user") || "");
 
+  const [Searchlist, setSearchlist] = useState<Manga[]>([]);
+
   const filteredFavorites: Favorite[] = favorites.filter(
     (element) => element.userId === user.id
   );
@@ -29,7 +31,7 @@ const Favorites = () => {
   return (
     <S.favorites>
       <S.FavoritesContent>
-        <Header path="favorites" />
+        <Header setSearchlist={setSearchlist} />
 
         <S.MangasHeaderContainer>
           <h2>Manga Favorites</h2>
