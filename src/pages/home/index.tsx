@@ -31,7 +31,6 @@ const Home = () => {
     filteredMangas = Searchlist.filter(
       (element) => selectedGenre && element.genreId === selectedGenre.id
     );
-    console.log(filteredMangas);
   }
 
   const handleGetFavorites = async () => {

@@ -30,18 +30,15 @@ interface NewMangaData {
 }
 
 const newMangaSchema = yup.object().shape({
-  name: yup.string().required("Manga name is mandatory"),
+  name: yup.string(),
 
-  description: yup.string().required("Manga description is mandatory"),
+  description: yup.string(),
 
-  chapters: yup.number().required("Manga chapters is mandatory"),
+  chapters: yup.number(),
 
-  genreId: yup.string().required("Manga genre is mandatory"),
+  genreId: yup.string(),
 
-  image: yup
-    .string()
-    .url("Invalid URL format")
-    .required("Manga image is mandatory"),
+  image: yup.string().url("Invalid URL format"),
 });
 
 const updateMangaSchema = yup.object().shape({
@@ -95,6 +92,7 @@ const MangaModal = ({ handleOpenModal, manga, setManga }: MangaModalProsp) => {
 
   const handleUpdateManga = (data: NewMangaData) => {
     data.genreId = genreId;
+    console.log(data.genreId);
 
     api.patch(`/mangas/${manga?.id}`, data, headers).then(() => {
       toast.success("Manga updated with success");
@@ -107,9 +105,7 @@ const MangaModal = ({ handleOpenModal, manga, setManga }: MangaModalProsp) => {
   return (
     <ModalOverlay>
       <S.ModalContainer
-        onSubmit={
-          manga ? handleSubmit(handleUpdateManga) : handleSubmit(handleNewManga)
-        }
+        onSubmit={handleSubmit(manga ? handleUpdateManga : handleNewManga)}
       >
         <h2>{manga ? "Edit Manga" : "Add Manga"}</h2>
         <Input

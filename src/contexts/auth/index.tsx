@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     };
 
     api
-      .get(`http://localhost:3333/users/${user.id}`, headers)
+      .get(`/users/${user.id}`, headers)
       .then(() => {
         setLogged(true);
         navigate("/");
